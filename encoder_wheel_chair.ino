@@ -1,18 +1,22 @@
-/* This Project is easy PID control with encoder,
- * it apply in the motor controller and caclulator the RPM.
+/*
+ ****************************************************************	
+ * @file	encoder_wheel_chair.ino
+ * @date    2013-12-12
+ * @author	JackABK
+ *		  	Github: https://github.com/JackABK 
+ *        	E-mail: gn771018@hotmail.com
  *
- * 
- * The encoder signal is A leader to B 90 angle , so that like as picture is CW.
- *				__	  __
+ * @brief 	This Project is easy PID control with encoder,
+ *        	it apply in the motor controller and caclulator the RPM. 
+ *        	The encoder signal is A leader to B 90 angle , 
+ *        	so that like as picture  is CW.
+ *	 			__	  __
  *         A __|  |__|	|__
  *             	  __    __ 
  *		   B   __|  |__|  |__
  *
  *
- * JackABK
- * Github: https://github.com/JackABK 
- * E-mail: gn771018@hotmail.com
- *
+ ***************************************************************
  */
 
 
