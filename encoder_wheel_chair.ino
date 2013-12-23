@@ -28,7 +28,7 @@
 #define PIN_EncoderRightPhase_A  3  /*encoder_right phase A signal , will trigger interrupt 1*/
 #define PIN_EncoderRightPhase_B  5  /*encoder_right phase A signal*/
 
-/*Motor_left and Motor_right setting , on the testing wheel chair , it's driver only need by PWM.*/
+/*Motor_left and Motor_right setting , on the testing wheel chair , it's driver only need by one analog voltage PWM.*/
 //#define INA  8 /*motor A reversing control pin*/
 //#define INB  12 /*motor B reversing control pin*/
 #define PIN_Motor_left  11 /*motor left speed control pin*/
@@ -57,7 +57,7 @@ byte CHECK_CW_OR_CCW; /*use for check the motor is CW or CCW*/
 byte flag;
 /*Global var setting*/
 char val;
-char acpt_cmd = 'f';  /* parse the command from uart*/
+char acpt_cmd;  /* parse the command from uart*/
 /*just a counter*/
 int counter1=0; 
 int counter2=0; 
@@ -83,17 +83,12 @@ void setup()
 void loop()
 {
                 
-		/*if(Serial.available()> 0){
+		if(Serial.available()> 0){
 				acpt_cmd = Serial.read();
 				PerformCommand();
-		}*/
-    
-                
-		while(counter1 < 1){
-				PerformCommand();
-				counter1= counter1 + 1;
 		}
-
+    
+               
 
 		time = millis();
 		/*caclulator the encoder counter by 20msec once */
@@ -140,7 +135,7 @@ void loop()
 
 			/*only run 5 times*/
             if(counter2 > 5) {
-              stop_motion() ;
+              stop_motion();
               while(1);
             }
             
@@ -182,14 +177,14 @@ void PerformCommand()
 }
 void go_forward()
 {
-		digitalWrite(INA,HIGH);   
+		//digitalWrite(INA,HIGH);   
 		//digitalWrite(INB,HIGH);
 		analogWrite(PIN_Motor_left,SpeedValue_left);
 		analogWrite(PIN_Motor_right,SpeedValue_right);
 }
 void go_reverse()
 {
-		digitalWrite(INA,LOW);   
+		//digitalWrite(INA,LOW);   
 		//digitalWrite(INB,LOW);
 		analogWrite(PIN_Motor_left,SpeedValue_left);
 		analogWrite(PIN_Motor_right,SpeedValue_right);
@@ -197,14 +192,14 @@ void go_reverse()
 }
 void go_left()
 {
-		digitalWrite(INA,LOW);   
+		//digitalWrite(INA,LOW);   
 		//digitalWrite(INB,HIGH);
 		analogWrite(PIN_Motor_left,SpeedValue);
 		//analogWrite(PIN_Motor_right,SpeedValue);
 }
 void go_right()
 {
-		digitalWrite(INA,HIGH);   
+		//digitalWrite(INA,HIGH);   
 		//digitalWrite(INB,LOW);
 		analogWrite(PIN_Motor_left,SpeedValue);
 		//analogWrite(PIN_Motor_right,SpeedValue);
@@ -227,8 +222,8 @@ void go_reverse_R()
 }
 void stop_motion()
 {
-		digitalWrite(INA,LOW);   
-		digitalWrite(INB,LOW);
+		//digitalWrite(INA,LOW);   
+		//digitalWrite(INB,LOW);
 		digitalWrite(PIN_Motor_left,LOW);
 		digitalWrite(PIN_Motor_right,LOW);
 }
